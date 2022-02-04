@@ -1,5 +1,20 @@
 import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Image, ScrollView, StyleSheet, View } from 'react-native';
+
+const PantallaPrincipal = () => {
+//llamadas axios a API
+const [datos, setDatos] = useState([]);
+const searchTerm = "david";
+useEffect(() =>{
+getDatos();
+},[])
+const getDatos = async() => {
+const res = await axios.get(`https://api.github.com/search/users?q=${searchTerm}`);
+setDatos(res.data.items);
+console.log(datos);
+}
 
 const Pantalla3 = () => {
     return(

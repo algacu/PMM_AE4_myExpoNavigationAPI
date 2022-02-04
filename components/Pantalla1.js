@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 const Pantalla1 = () => {
     const navigation = useNavigation();
     return (
-        <Stack.Navigator>
+        <Stack.Navigator options='false'>
             <Stack.Group>
                 <Stack.Screen name='Pantalla 1' component={Home} options={{ headerShown: false }} />
             </Stack.Group>

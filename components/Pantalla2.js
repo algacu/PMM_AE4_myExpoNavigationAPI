@@ -1,11 +1,18 @@
 import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { StyleSheet } from 'react-native';
+import Stack1 from './Stack1';
+import Stack2 from './Stack2';
+
+const Stack = createStackNavigator();
 
 const Pantalla2 = () => {
-    return(
-        <View style={styles.container}>
-            <Text style={styles.title}>Pantalla 2</Text>
-        </View>
+    return (
+        <Stack.Navigator options="false" >
+            <Stack.Screen name="Stack1" component={Stack1} options={{ headerShown: false }}/>
+            <Stack.Screen name="Stack2" component={Stack2} options={{ headerShown: false }}/>
+        </Stack.Navigator>
     )
 }
 
