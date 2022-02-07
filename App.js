@@ -27,10 +27,10 @@ const App = () => {
             <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
         }} />
-        <Tab.Screen name='Stacks' component={Pantalla2} options={{
+        <Tab.Screen name='Pantalla 2: Stack' component={Pantalla2} options={{
           tabBarLabel: 'Pantalla 2',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="arrow-up" color={color} size={size} />
+            <MaterialCommunityIcons name="arrow-right" color={color} size={size} />
           ),
         }} />
         <Tab.Screen name='API Rick y Morty' component={Pantalla3} options={{
