@@ -9,11 +9,11 @@ import Pantalla3 from './components/Pantalla3';
 import Pantalla4 from './components/Pantalla4';
 
 import { LogBox } from 'react-native';
-
 LogBox.ignoreLogs([
-  //Parece ser que react navitagion instala un módulo que acaban de actualizar en fase experimental. Utilizo esta función para ignorar en mensaje informativo.
+  //Parece ser que react navitagion instala un módulo que acaban de actualizar en fase experimental. Utilizo esta función para ignorar el mensaje informativo.
   "[react-native-gesture-handler] Seems like you\'re using an old API with gesture components, check out new Gestures system!",
 ]);
+
 
 const Tab = createBottomTabNavigator();
 
@@ -39,7 +39,7 @@ const App = () => {
             <MaterialCommunityIcons name="archive" color={color} size={size} />
           ),
         }} />
-        <Tab.Screen name='Pantalla4' component={Pantalla4} options={{
+        <Tab.Screen name='API Países' component={Pantalla4} options={{
           tabBarLabel: 'Pantalla 4',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="archive" color={color} size={size} />

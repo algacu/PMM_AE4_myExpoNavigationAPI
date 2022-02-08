@@ -9,34 +9,43 @@ const Pantalla4 = () => {
 
     //llamadas axios a API
     const [datos, setDatos] = useState([]);
-    const [search, setSearch] = useState('');
+    const [search, setSearch] = useState('Spain');
     const [fronteras, setFronteras] = useState([]);
 
+    //Utilizo la API Rest Countries para obtener de los países del mundo.
+    //Está configurada para coger nombres completos y parciales. Si buscamos 'italy' nos saldrá sólo Italia, 
+    //pero si buscamos 'republic'nos saldrá Italia y todos los países del mundo que son repúblicas.
+    //Aunque la API está en inglés, nos permite buscar países en el idioma original de cada país. Por ejemplo, 'España' y 'Spain' arrojan lo mismo.
 
-    // useEffect(() => {
-    //     getDatos();
-    // }, [])
+    //Utilizo useEffect para lanzar getDatos y mostrar una información inicial al abrir la pantalla.
+    //Podria no usar esta función y mostrar la pantalla en blanco, sin haber inicializado la variable search.
+    useEffect(() => {
+        getDatos();
+    }, [])
 
+    //Llamada a la Api. Construyo la uri pasándole el término de busqueda y recojo datos (array) con setDatos[];
     const getDatos = async () => {
-        try{
+        try {
             const resultado = await axios.get(`https://restcountries.com/v3.1/name/${search}`);
             setDatos(resultado.data);
-        } catch (error){
+        } catch (error) {
             console.log(error)
         }
     }
 
+    //Recorro el array de datos con la función Map. En este caso, genero un bloque vista 
+    //con los datos seleccionados de cada elemento del conjunto.
     const lista = datos.map((dato) => (
-        <View id={dato.tld} style={styles.tarjeta}>
-            <View id='cabecera' style={styles.bloque}>
+        <View key={dato.cca2} style={styles.tarjeta}>
+            <View style={styles.bloque}>
                 <Image style={styles.imagen} source={{ uri: dato.flags.png }} />
                 <Text style={styles.title}>{dato.name.common}</Text>
                 <Text style={styles.subtitle}>{dato.name.official}</Text>
             </View>
-            <View id='region' style={styles.bloque}>
+            <View style={styles.bloque}>
                 <Text style={styles.texto}>Region: {dato.region}</Text>
             </View>
-            <View id='social' style={styles.bloque}>
+            <View style={styles.bloque}>
                 <Text style={styles.texto}>Capital: {dato.capital}</Text>
                 <Text style={styles.texto}>Población: {dato.population}</Text>
             </View>
@@ -45,7 +54,7 @@ const Pantalla4 = () => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Buscador de paises</Text>
+            <Text style={styles.title}>Buscador de países</Text>
             <TextInput style={styles.input} placeholder='Introduce un país' value={search} onChangeText={setSearch} />
             <Button title='Buscar' onPress={getDatos} />
             <View style={styles.container}>

@@ -7,25 +7,29 @@ import { TextInput } from 'react-native-gesture-handler';
 
 const Pantalla3 = () => {
 
-    //llamadas axios a API
     const [datos, setDatos] = useState([]);
-    const [name, setName] = useState('');
     const [search, setSearch] = useState('');
 
+    //Utilizo la API de Rick y Morty para obtener información de los personajes de la serie.
+
+    //Utilizo useEffect para lanzar getDatos y mostrar una información inicial al abrir la pantalla, con todos los personajes.
     useEffect(() => {
         getDatos();
     }, [])
 
+    //Llamada a la Api. Construyo la uri pasándole el término de busqueda y recojo datos (array) con setDatos[];
     const getDatos = async () => {
-        const res = await axios.get(`https://rickandmortyapi.com/api/character/?name=${search}`);
-        setDatos(res.data.results);
+        const resultado = await axios.get(`https://rickandmortyapi.com/api/character/?name=${search}`);
+        setDatos(resultado.data.results);
     }
 
-    const lista = datos.map((user) => (
-        <View key={user.id} style={styles.tarjeta}>
-            <Image style={styles.imagen} source={{ uri: user.image }} />
-            <Text style={styles.nombre}>{user.name}</Text>
-            <Text style={styles.especie}>{user.species}</Text>
+    //Recorro el array de datos con la función Map. En este caso, genero un bloque vista 
+    //con los datos seleccionados de cada elemento del conjunto.
+    const lista = datos.map((personaje) => (
+        <View key={personaje.id} style={styles.tarjeta}>
+            <Image style={styles.imagen} source={{ uri: personaje.image }} />
+            <Text style={styles.nombre}>{personaje.name}</Text>
+            <Text style={styles.especie}>{personaje.species}</Text>
         </View>
     ));
 
