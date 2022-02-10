@@ -24,7 +24,7 @@ const Pantalla3 = () => {
     }
 
     //Recorro el array de datos con la función Map. En este caso, genero un bloque vista 
-    //con los datos seleccionados de cada elemento del conjunto.
+    //con los datos seleccionados de cada elemento del conjunto (incluyendo ID de cada elemento).
     const lista = datos.map((personaje) => (
         <View key={personaje.id} style={styles.tarjeta}>
             <Image style={styles.imagen} source={{ uri: personaje.image }} />

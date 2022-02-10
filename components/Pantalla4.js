@@ -7,10 +7,8 @@ import { TextInput } from 'react-native-gesture-handler';
 
 const Pantalla4 = () => {
 
-    //llamadas axios a API
     const [datos, setDatos] = useState([]);
     const [search, setSearch] = useState('Spain');
-    const [fronteras, setFronteras] = useState([]);
 
     //Utilizo la API Rest Countries para obtener de los países del mundo.
     //Está configurada para coger nombres completos y parciales. Si buscamos 'italy' nos saldrá sólo Italia, 
@@ -34,7 +32,7 @@ const Pantalla4 = () => {
     }
 
     //Recorro el array de datos con la función Map. En este caso, genero un bloque vista 
-    //con los datos seleccionados de cada elemento del conjunto.
+    //con los datos seleccionados de cada elemento del conjunto (incluyendo ID de cada elemento).
     const lista = datos.map((dato) => (
         <View key={dato.cca2} style={styles.tarjeta}>
             <View style={styles.bloque}>
